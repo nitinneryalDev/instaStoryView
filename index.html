@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        height: 100vh;
+        width: 100vw;
+
+        background-repeat: no-repeat;
+        background-image: url('https://www.hdwallpapers.in/download/fog_mountain_rock_clouds_nature_relief_wallpaper_background_4k_hd_nature-HD.jpg');
+        background-size: cover;
+        background-color: #111;
+        display: grid;
+        place-content: center;
+    }
+
+    .main {
+        background-color: #f0f8ff4d;
+        overflow: hidden;
+        height: 500px;
+        width: 350px;
+        border-radius: 10px;
+        border: 2px solid red;
+        position: relative;
+    }
+
+
+    #full-screen {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        display: none;
+        object-fit: cover;
+    }
+
+
+    #stories {
+        padding: 10px 5px;
+        display: block;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+
+
+    #stories::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .story {
+        width: 90px;
+        height: 90px;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 2px solid red;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .story img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        overflow: hidden;
+    }
+</style>
+
+<body>
+    <div class="main">
+        <div id="full-screen">
+        </div>
+        <div id="stories">
+            <div class="story">
+                <img src="https://i.pinimg.com/736x/9c/52/f1/9c52f1c5b7fab519643b41b81956f848.jpg" />
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let arr = [{ dp: 'https://i.pinimg.com/736x/9c/52/f1/9c52f1c5b7fab519643b41b81956f848.jpg', story: 'https://i.pinimg.com/736x/9c/52/f1/9c52f1c5b7fab519643b41b81956f848.jpg' },
+    { dp: 'https://i.pinimg.com/564x/03/dd/dc/03dddcc7b7c3903b263817921904dde6.jpg', story: 'https://i.pinimg.com/564x/03/dd/dc/03dddcc7b7c3903b263817921904dde6.jpg' },
+    { dp: 'https://e1.pxfuel.com/desktop-wallpaper/336/1007/desktop-wallpaper-pin-on-girls-pinterest-women-beautiful-hair.jpg', story: 'https://e1.pxfuel.com/desktop-wallpaper/336/1007/desktop-wallpaper-pin-on-girls-pinterest-women-beautiful-hair.jpg' },
+    { dp: 'https://w0.peakpx.com/wallpaper/514/228/HD-wallpaper-malvika-sharma-actress-beautiful-bollywood-traditional-traditional-girl-thumbnail.jpg', story: 'https://w0.peakpx.com/wallpaper/514/228/HD-wallpaper-malvika-sharma-actress-beautiful-bollywood-traditional-traditional-girl-thumbnail.jpg' },
+    { dp: 'https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?cs=srgb&dl=pexels-soldiervip-1468379.jpg&fm=jpg', story: 'https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?cs=srgb&dl=pexels-soldiervip-1468379.jpg&fm=jpg' },
+    { dp: 'https://i.pinimg.com/736x/d6/de/2b/d6de2bcbdcd02a287153cf15fc51fc90.jpg', story: 'https://i.pinimg.com/736x/d6/de/2b/d6de2bcbdcd02a287153cf15fc51fc90.jpg' }]
+
+
+    let stories = document.querySelector('#stories');
+    let fullScreen = document.querySelector('#full-screen');
+    let clutter = '';
+    arr.forEach((hello, indx) => {
+        console.log(indx);
+
+        clutter += `<div class="story">
+                <img id="${indx}" src="${hello.dp}" alt="" />
+            </div>`
+        stories.innerHTML = clutter
+        stories.addEventListener('click', (e) => {
+            console.log(e);
+            fullScreen.style.display = `block`
+            fullScreen.style.backgroundImage = `url(${arr[e.target.id].story})`
+
+            setTimeout(() => {
+                fullScreen.style.display = 'none'
+                fullScreen.style.backgroundSize = 'cover'
+            }, 1000)
+
+        })
+
+
+    })
+
+
+
+
+
+</script>
+
+</html>
